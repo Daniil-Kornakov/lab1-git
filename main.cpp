@@ -30,7 +30,22 @@ double sqrtHeron(double x) {
     }
 }
 
-
+// 2. Кубический корень через итерации
+// Итерации: x_{n+1} = (2*x_n + x/(x_n^2)) / 3
+double cubeRoot(double x) {
+    if (x == 0) return 0;
+    
+    double guess = x / 3.0;
+    double epsilon = 0.000001;
+    
+    while (true) {
+        double next = (2.0 * guess + x / (guess * guess)) / 3.0;
+        if (abs(next - guess) < epsilon) {
+            return next;
+        }
+        guess = next;
+    }
+}
 
 // ===== Главная функция: меню =====
 int main() {
@@ -43,6 +58,7 @@ int main() {
     do {
         cout << "\n== Вариант 59: Приближённые корни ==\n";
         cout << "1. Квадратный корень (метод Герона)\n";
+        cout << "2. Кубический корень\n";
         cout << "0. Выход\n";
         cout << "Выберите пункт: ";
         cin >> choice;
@@ -52,6 +68,11 @@ int main() {
                 cout << "Введите число x: ";
                 cin >> x;
                 cout << "sqrt(" << x << ") = " << sqrtHeron(x) << "\n";
+                break;
+            case 2:
+                cout << "Введите число x: ";
+                cin >> x;
+                cout << "cbrt(" << x << ") = " << cubeRoot(x) << "\n";
                 break;
             case 0:
                 cout << "Работа завершена.\n";
