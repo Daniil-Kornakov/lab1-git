@@ -88,6 +88,8 @@ int main() {
         }
     } while (choice != 0);
     
+    cout << "Выход из программы.\n";
+
     return 0;
 }
 
